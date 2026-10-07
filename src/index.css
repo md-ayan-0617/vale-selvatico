@@ -1,0 +1,218 @@
+:root {
+  /* Brand Earthy Palette */
+  --bone: #F1EBDD;
+  --forest: #253126;
+  --forest-deep: #172019;
+  --terracotta: #A95337;
+  --harvest: #D3A43B;
+  --sage: #8E9B7B;
+  --fig: #633F4B;
+  --espresso: #211A16;
+  --paper: #E6DFD1;
+  --chalk: #FAF7F0;
+  --ink: #1D1D19;
+
+  /* Font Families */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Azeret Mono', monospace;
+
+  /* Transition Eases */
+  --ease-editorial: cubic-bezier(0.215, 0.61, 0.355, 1); /* power3.out */
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* power2.out */
+  --ease-mask: cubic-bezier(0.19, 1, 0.22, 1); /* expo.out */
+  --ease-page: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Page default colors (Default is Bone) */
+  --bg-current: var(--bone);
+  --text-current: var(--forest);
+  --accent-current: var(--terracotta);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bone);
+  color: var(--forest);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sage) var(--bone);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-current);
+  color: var(--text-current);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--terracotta);
+  color: var(--chalk);
+}
+
+/* Base Headings & Typography */
+h1, h2, h3, h4, .serif-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+em, .italic {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.mono-micro {
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 0.75vw, 12px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Scale tokens */
+.type-mega {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 11vw, 180px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.type-hero {
+  font-family: var(--font-display);
+  font-size: clamp(65px, 8.5vw, 135px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+.type-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(55px, 6.5vw, 110px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 84px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.type-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 48px);
+  line-height: 1.15;
+}
+
+.type-body-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.type-body-sm {
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Links & Buttons */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Film Grain Overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.038;
+}
+
+/* Desktop Custom Cursor Hide Native */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea {
+    cursor: none;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
